@@ -8,8 +8,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: "pages"
@@ -18,9 +16,6 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,17 +32,25 @@ jobs:
       - name: Run linter (ESLint)
         run: npm run lint
 
-      - name: Build
+      - name: Build both sites
         run: npm run build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy EMI to Pages repo
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: "dist"
+          deploy_key: ${{ secrets.DEPLOY_KEY_EMI }}
+          external_repository: HAW-Hamburg-OE-EMI-INF/oe-emi-pages
+          publish_branch: gh-pages
+          publish_dir: ./emi/dist
+          # cname: oe-emi.de
+          cname: emi.oe.dashline.de
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Deploy INF to Pages repo
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.DEPLOY_KEY_INF }}
+          external_repository: HAW-Hamburg-OE-EMI-INF/oe-inf-pages
+          publish_branch: gh-pages
+          publish_dir: ./inf/dist
+          # cname: oe.informatik.haw-hamburg.de
+          cname: inf.oe.dashline.de
