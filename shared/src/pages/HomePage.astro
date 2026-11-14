@@ -1,0 +1,40 @@
+---
+import CampusImage from "../assets/background/Campus-Berliner-Tor-2018.webp";
+import FacultyTiles from "../components/hero/faculty-tiles.astro";
+import Hero from "../components/hero/hero.astro";
+import OeInfoCard from "../components/oe-info/oe-info-card.astro";
+import RoadmapCard from "../components/roadmap/roadmap-card.astro";
+import SponsorCard from "../components/sponsor/sponsor-card.astro";
+import Wartungsarbeiten from "../components/wartungsarbeiten/wartungsarbeiten.astro";
+import { oeInfoCardDataEMI, oeInfoCardDataINF } from "../data/general-info";
+import Layout from "../layouts/Layout.astro";
+import type { FacultyEntry, RoadmapData } from "../types/types";
+
+interface Props {
+  faculty: FacultyEntry;
+  roadmapData?: RoadmapData;
+}
+
+const { faculty, roadmapData } = Astro.props as Props;
+---
+
+<Layout faculty={faculty} name="Start">
+  <Hero
+    backgroundImage={CampusImage}
+    imageAlt="HAW Hamburg Campus Berliner Tor"
+    subtitle="Herzlich Willkommen an der HAW Hamburg zum Studienstart an der Fakultät"
+    title="Orientierungseinheit"
+  >
+    <FacultyTiles faculties={[faculty]} />
+  </Hero>
+
+  <div class="mx-auto w-full max-w-4xl space-y-8 px-4 py-10 sm:px-6">
+    <Wartungsarbeiten faculty={faculty} />
+
+    {faculty.id === "INF" && <OeInfoCard data={oeInfoCardDataINF} />}
+    {faculty.id === "EMI" && <OeInfoCard data={oeInfoCardDataEMI} />}
+
+    {roadmapData && <RoadmapCard data={roadmapData} />}
+    <SponsorCard />
+  </div>
+</Layout>

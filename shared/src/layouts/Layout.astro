@@ -1,0 +1,33 @@
+---
+import Footer from "../components/footer/footer.astro";
+import Header from "../components/header/header.astro";
+import type { FacultyEntry } from "../types/types";
+
+interface Props {
+  name: string;
+  faculty: FacultyEntry;
+  description?: string;
+}
+
+const { name, faculty, description } = Astro.props;
+---
+
+<!doctype html>
+<html class="scroll-smooth" lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>{name} - Orientierungseinheit {faculty.short}</title>
+    {description && <meta content={description} name="description" />}
+    <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+  </head>
+  <body class="selection:bg-primary-200 selection:text-primary-900 flex min-h-screen flex-col bg-slate-50 text-slate-800 antialiased">
+    <Header faculty={faculty} />
+
+    <main class="flex flex-1 flex-col">
+      <slot />
+    </main>
+
+    <Footer faculty={faculty} />
+  </body>
+</html>

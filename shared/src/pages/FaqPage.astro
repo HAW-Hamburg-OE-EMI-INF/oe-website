@@ -1,0 +1,29 @@
+---
+import FAQContainer from "../components/faq/faq-container.astro";
+import Hero from "../components/hero/hero.astro";
+import FAQContent from "../data/faq-content.astro";
+import Layout from "../layouts/Layout.astro";
+import type { FacultyEntry } from "../types/types";
+
+import "../styles/faq.css";
+
+interface Props {
+  faculty: FacultyEntry;
+}
+
+const { faculty } = Astro.props as Props;
+---
+
+<Layout faculty={faculty} name="Häufig gestellte Fragen (FAQ)">
+  <Hero
+    compact
+    subtitle="Antworten auf die wichtigsten Fragen zur Orientierungseinheit und deinem Studienstart an der HAW Hamburg"
+    title="Häufige Fragen (FAQ)"
+  />
+
+  <div class="mx-auto w-full max-w-4xl space-y-10 px-4 py-10 sm:px-6">
+    <FAQContainer>
+      <FAQContent />
+    </FAQContainer>
+  </div>
+</Layout>

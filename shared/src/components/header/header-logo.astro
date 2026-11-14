@@ -1,0 +1,21 @@
+---
+import OeLogo from "../../assets/logo/logo-oe.svg";
+import type { FacultyEntry } from "../../types/types";
+
+interface Props {
+  faculty: FacultyEntry;
+  class?: string;
+}
+
+const { faculty, class: className = "" } = Astro.props as Props;
+---
+
+<a class:list={["group flex items-center gap-3 focus:outline-hidden", className]} href="/">
+  <OeLogo class="h-9 w-9" />
+  <div class="flex flex-col">
+    <span class="text-base leading-tight font-bold tracking-tight text-slate-900">
+      Orientierungseinheit
+    </span>
+    <span class="text-xs font-medium text-slate-500"> {faculty.short} </span>
+  </div>
+</a>

@@ -1,0 +1,14 @@
+---
+export interface Props {
+  email: string;
+}
+
+const { email } = Astro.props as Props;
+---
+
+<a
+  class="text-primary-600 hover:text-primary-800 font-medium underline underline-offset-2 transition-colors"
+  href={`mailto:${email}`}
+>
+  {email}
+</a>

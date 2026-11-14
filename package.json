@@ -1,25 +1,26 @@
 {
   "name": "haw-hamburg-oe-emi-inf-website",
   "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+    "shared",
+    "emi",
+    "inf"
+  ],
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
+    "dev:emi": "npm run dev --workspace=@oe/emi",
+    "dev:inf": "npm run dev --workspace=@oe/inf",
+    "build": "npm run build --workspaces --if-present",
+    "build:emi": "npm run build --workspace=@oe/emi",
+    "build:inf": "npm run build --workspace=@oe/inf",
+    "preview:emi": "npm run preview --workspace=@oe/emi",
+    "preview:inf": "npm run preview --workspace=@oe/inf",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@astrojs/markdown-satteri": "^0.4.7",
-    "@astrojs/mdx": "^8.1.3",
-    "@astrojs/sitemap": "^3.7.4",
-    "@tailwindcss/vite": "^4.3.4",
-    "astro": "^7.4.7",
-    "tailwindcss": "^4.3.4"
+    "typecheck": "npm run typecheck --workspaces --if-present"
   },
   "devDependencies": {
     "@astrojs/compiler-rs": "^0.5.2",

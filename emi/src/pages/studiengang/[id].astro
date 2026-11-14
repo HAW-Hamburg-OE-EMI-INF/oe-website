@@ -1,0 +1,18 @@
+---
+import "../../styles/global.css";
+import { faculties } from "@oe/shared/data/faculty.ts";
+import { getStudiengangPageIdsByFaculty } from "@oe/shared/data/studiengaenge.ts";
+import StudiengangDetailPage from "@oe/shared/pages/StudiengangDetailPage.astro";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (() => {
+  return getStudiengangPageIdsByFaculty("EMI").map((id) => ({
+    params: { id },
+    props: { studiengangPageId: id },
+  }));
+}) satisfies GetStaticPaths;
+
+const { studiengangPageId } = Astro.props;
+---
+
+<StudiengangDetailPage faculty={faculties.EMI} studiengangPageId={studiengangPageId} />

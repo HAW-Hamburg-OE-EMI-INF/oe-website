@@ -1,0 +1,28 @@
+{
+  "name": "@oe/shared",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./assets/*": "./src/assets/*",
+    "./components/*": "./src/components/*",
+    "./data/*": "./src/data/*",
+    "./layouts/*": "./src/layouts/*",
+    "./pages/*": "./src/pages/*",
+    "./styles/*": "./src/styles/*",
+    "./types": "./src/types/types.ts",
+    "./types/*": "./src/types/*",
+    "./vite-shared": "./src/vite-shared.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "astro": "^7.4.7",
+    "tailwindcss": "^4.3.4"
+  },
+  "peerDependencies": {
+    "astro": "^7.4.7",
+    "tailwindcss": "^4.3.4"
+  }
+}

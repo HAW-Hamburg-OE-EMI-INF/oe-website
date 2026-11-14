@@ -1,0 +1,13 @@
+---
+import StudiengangPage from "../components/studiengang-detail/studiengang-page.astro";
+import type { FacultyEntry, StudiengangPageId } from "../types/types";
+
+interface Props {
+  faculty: FacultyEntry;
+  studiengangPageId: StudiengangPageId;
+}
+
+const { faculty, studiengangPageId } = Astro.props as Props;
+---
+
+<StudiengangPage faculty={faculty} studiengangPageId={studiengangPageId} />
