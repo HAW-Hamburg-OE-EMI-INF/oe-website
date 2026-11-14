@@ -1,6 +1,5 @@
 @import "@oe/shared/styles/global.css";
 
-/* EMI Theme Colors: Classic HAW Hamburg Corporate Blue */
 @theme {
   --color-primary-50: #eff6ff;
   --color-primary-100: #dbeafe;
