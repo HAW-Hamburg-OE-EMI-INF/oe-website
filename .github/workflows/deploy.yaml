@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,22 +35,54 @@ jobs:
       - name: Build both sites
         run: npm run build
 
-      - name: Deploy EMI to Pages repo
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload EMI build artifact
+        uses: actions/upload-artifact@v4
         with:
-          deploy_key: ${{ secrets.DEPLOY_KEY_EMI }}
-          external_repository: HAW-Hamburg-OE-EMI-INF/oe-emi-pages
-          publish_branch: gh-pages
-          publish_dir: ./emi/dist
-          # cname: oe-emi.de
-          cname: emi.oe.dashline.de
+          name: emi-dist
+          path: ./emi/dist
+          retention-days: 1
 
-      - name: Deploy INF to Pages repo
+      - name: Upload INF build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: inf-dist
+          path: ./inf/dist
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - site: EMI
+            artifact: emi-dist
+            secret_name: DEPLOY_KEY_EMI
+            repo: HAW-Hamburg-OE-EMI-INF/oe-emi-pages
+            # cname: oe-emi.de
+            cname: emi.oe.dashline.de
+          - site: INF
+            artifact: inf-dist
+            secret_name: DEPLOY_KEY_INF
+            repo: HAW-Hamburg-OE-EMI-INF/oe-inf-pages
+            # cname: oe.informatik.haw-hamburg.de
+            cname: inf.oe.dashline.de
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download ${{ matrix.site }} build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ./dist
+
+      - name: Deploy ${{ matrix.site }} to Pages repo
         uses: peaceiris/actions-gh-pages@v4
         with:
-          deploy_key: ${{ secrets.DEPLOY_KEY_INF }}
-          external_repository: HAW-Hamburg-OE-EMI-INF/oe-inf-pages
+          deploy_key: ${{ secrets[matrix.secret_name] }}
+          external_repository: ${{ matrix.repo }}
           publish_branch: gh-pages
-          publish_dir: ./inf/dist
-          # cname: oe.informatik.haw-hamburg.de
-          cname: inf.oe.dashline.de
+          publish_dir: ./dist
+          cname: ${{ matrix.cname }}
