@@ -7,15 +7,21 @@ import RoadmapCard from "../components/roadmap/roadmap-card.astro";
 import SponsorCard from "../components/sponsor/sponsor-card.astro";
 import Wartungsarbeiten from "../components/wartungsarbeiten/wartungsarbeiten.astro";
 import { oeInfoCardDataEMI, oeInfoCardDataINF } from "../data/general-info";
+import { roadmapBuilderDataByPageId } from "../data/roadmap";
 import Layout from "../layouts/Layout.astro";
-import type { FacultyEntry, RoadmapData } from "../types/types";
+import type { FacultyEntry, RoadmapData, StudiengangPageId } from "../types/types";
+import { roadmapBuilder } from "../util/roadmap.util";
 
 interface Props {
   faculty: FacultyEntry;
-  roadmapData?: RoadmapData;
+  roadmapStudiengangPageIds: Exclude<StudiengangPageId, "m-inf">[];
 }
 
-const { faculty, roadmapData } = Astro.props as Props;
+const { faculty, roadmapStudiengangPageIds } = Astro.props as Props;
+
+const roadmapData: RoadmapData[] = roadmapStudiengangPageIds.map((data) =>
+  roadmapBuilder(roadmapBuilderDataByPageId[data]),
+);
 ---
 
 <Layout faculty={faculty} name="Start">
@@ -34,7 +40,9 @@ const { faculty, roadmapData } = Astro.props as Props;
     {faculty.id === "INF" && <OeInfoCard data={oeInfoCardDataINF} />}
     {faculty.id === "EMI" && <OeInfoCard data={oeInfoCardDataEMI} />}
 
-    {roadmapData && <RoadmapCard data={roadmapData} />}
+    {roadmapData.map((data) => (
+      <RoadmapCard data={data} />
+    ))}
     <SponsorCard />
   </div>
 </Layout>

@@ -83,18 +83,23 @@ export interface RoadmapMetadata {
   room: string;
 }
 
+export type CommonRoadmapDayData = Omit<RoadmapDay, "start" | "end" | "items">;
+
+export type SpecificRoadmapDayData = Omit<RoadmapDay, "weekday" | "date" | "eveningProgram">;
+
+export interface CommonRoadmapData {
+  semester: string;
+  days: CommonRoadmapDayData[];
+}
+
 export interface RoadmapData {
   metadata: RoadmapMetadata;
   days: RoadmapDay[];
 }
 
-export interface SiteConfig {
-  facultyId: FacultyId;
-  siteName: string;
-  titleSuffix: string;
-  defaultTitle: string;
-  defaultDescription: string;
-  contactEmail: string;
-  websiteHost: string;
-  instagramUrl: string;
+export interface RoadmapBuilderData {
+  common: CommonRoadmapData;
+  studiengang: StudiengangPageId;
+  room: string;
+  days: SpecificRoadmapDayData[];
 }

@@ -1,23 +1,32 @@
-import type { OeInfoCardData } from "../types/types";
+import type { OeInfoCardData, OeStartEvent } from "../types/types";
 import { faculties } from "./faculty";
 import { studiengaenge } from "./studiengaenge";
 
-export const oeInfoCardDataEMI: OeInfoCardData = {
-  studiengaenge: [studiengaenge.ET, studiengaenge.IE, studiengaenge.MT, studiengaenge.REE],
+const oeWeekData: Omit<OeInfoCardData, "faculty" | "studiengaenge" | "startEvent"> = {
   startDate: "05.10.2026",
   endDate: "08.10.2026",
+};
+
+const commonStartEventData: Omit<OeStartEvent, "time"> = {
+  date: "05.10.2026",
+  building: "Berliner Tor 21",
+  buildingShort: "BT21",
+  room: "der Aula",
+  mapsUrl: "https://maps.app.goo.gl/aEXW4oQkYzA13sATA",
+};
+
+export const oeInfoCardDataEMI: OeInfoCardData = {
+  ...oeWeekData,
+  studiengaenge: [studiengaenge.ET, studiengaenge.IE, studiengaenge.MT, studiengaenge.REE],
   startEvent: {
-    date: "05.10.2026",
+    ...commonStartEventData,
     time: "9:30 Uhr",
-    building: "Berliner Tor 21",
-    buildingShort: "BT21",
-    room: "der Aula",
-    mapsUrl: "https://maps.app.goo.gl/aEXW4oQkYzA13sATA",
   },
   faculty: faculties.EMI,
 };
 
 export const oeInfoCardDataINF: OeInfoCardData = {
+  ...oeWeekData,
   studiengaenge: [
     studiengaenge.AI,
     studiengaenge.WI,
@@ -26,15 +35,9 @@ export const oeInfoCardDataINF: OeInfoCardData = {
     studiengaenge.MI,
     studiengaenge.BIM,
   ],
-  startDate: "05.10.2026",
-  endDate: "08.10.2026",
   startEvent: {
-    date: "05.10.2026",
+    ...commonStartEventData,
     time: "10:30 Uhr",
-    building: "Berliner Tor 21",
-    buildingShort: "BT21",
-    room: "der Aula",
-    mapsUrl: "https://maps.app.goo.gl/aEXW4oQkYzA13sATA",
   },
   faculty: faculties.INF,
 };

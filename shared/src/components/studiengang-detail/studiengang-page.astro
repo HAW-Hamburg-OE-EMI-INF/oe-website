@@ -1,11 +1,14 @@
 ---
 import { linksByPage } from "../../data/links";
+import { roadmapBuilderDataByPageId } from "../../data/roadmap";
 import { studiengaengeByPage } from "../../data/studiengaenge";
 import { tutorNames } from "../../data/tutor-names";
 import Layout from "../../layouts/Layout.astro";
 import type { FacultyEntry, StudiengangPageId } from "../../types/types";
+import { roadmapBuilder } from "../../util/roadmap.util";
 import Card from "../card/card.astro";
 import Hero from "../hero/hero.astro";
+import RoadmapCard from "../roadmap/roadmap-card.astro";
 
 export interface Props {
   faculty: FacultyEntry;
@@ -34,6 +37,11 @@ const tutorTitle = studiengaenge.map((s) => s.short).join("- und ");
 const pageTitleName = studiengaenge.map((s) => `${s.name} (${s.short})`).join(" | ");
 
 const links = linksByPage[studiengangPageId];
+
+const roadmapData =
+  studiengangPageId !== "m-inf"
+    ? roadmapBuilder(roadmapBuilderDataByPageId[studiengangPageId])
+    : null;
 ---
 
 <Layout faculty={faculty} name={pageTitleName}>
@@ -45,6 +53,8 @@ const links = linksByPage[studiengangPageId];
         {formattedTutors || "Die Tutor*innen für diesen Studiengang werden noch bekanntgegeben."}
       </p>
     </Card>
+
+    {roadmapData && <RoadmapCard data={roadmapData} />}
 
     <Card heading="Linksammlung" variant="white">
       <ul class="list-disc space-y-3 pl-5">
