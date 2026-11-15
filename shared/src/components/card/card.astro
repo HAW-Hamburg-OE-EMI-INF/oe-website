@@ -2,7 +2,7 @@
 import type { SvgComponent } from "astro/types";
 
 export interface Props {
-  variant?: "white" | "default" | "haw" | "primary" | "dark" | "muted";
+  variant?: "white" | "primary";
   heading?: string;
   headingTrailingIcon?: SvgComponent;
   class?: string;
@@ -17,11 +17,7 @@ const {
 
 const variantClasses: Record<string, string> = {
   white: "bg-white border border-slate-200 shadow-xs text-slate-900",
-  default: "bg-white border border-slate-200 shadow-xs text-slate-900",
-  haw: "bg-primary-700 text-white shadow-md",
   primary: "bg-primary-700 text-white shadow-md",
-  dark: "bg-primary-800/80 text-white border border-primary-600/40 shadow-xs",
-  muted: "bg-slate-50 border border-slate-200 text-slate-800",
 };
 ---
 
