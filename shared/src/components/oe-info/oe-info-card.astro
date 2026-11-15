@@ -12,7 +12,7 @@ export interface Props {
 
 const { data } = Astro.props as Props;
 
-const { studiengaenge, startDate, endDate, startEvent, contactEmail } = data;
+const { studiengaenge, startDate, endDate, startEvent, faculty } = data;
 ---
 
 <Card class="text-center" variant="white">
@@ -38,7 +38,7 @@ const { studiengaenge, startDate, endDate, startEvent, contactEmail } = data;
 
     <p class="text-base leading-relaxed text-slate-600 sm:text-lg">
       Falls du vorab schon Fragen hast schau auf unsere <Hyperlink href="/faq">FAQ-Seite</Hyperlink>{" "}
-      oder schreib uns eine Mail an: <OeKontakt email={contactEmail} />
+      oder schreib uns eine Mail an: <OeKontakt email={faculty.contactEmail} />
     </p>
 
     <p class="text-base leading-relaxed text-slate-600 sm:text-lg">

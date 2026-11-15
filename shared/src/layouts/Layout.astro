@@ -25,7 +25,11 @@ const { name, faculty, description } = Astro.props;
     <Header faculty={faculty} />
 
     <main class="flex flex-1 flex-col">
-      <slot />
+      <slot name="hero" />
+
+      <div class="mx-auto w-full max-w-4xl space-y-8 px-4 py-8 sm:px-6">
+        <slot />
+      </div>
     </main>
 
     <Footer faculty={faculty} />

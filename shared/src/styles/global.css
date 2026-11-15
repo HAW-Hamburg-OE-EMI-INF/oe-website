@@ -7,44 +7,17 @@
     Arial, sans-serif;
 
   /* HAW Hamburg & OE Blue Scale */
-  --color-haw-50: #eff6ff;
-  --color-haw-100: #dbeafe;
-  --color-haw-200: #bfdbfe;
-  --color-haw-300: #8ac5ff;
-  --color-haw-400: #488fef;
-  --color-haw-500: #1976d2;
-  /* Vuetify base primary */
-  --color-haw-600: #005eb6;
-  /* Hero banner primary darken-1 */
-  --color-haw-700: #00479b;
-  /* Announcement primary darken-2 */
-  --color-haw-800: #003ca0;
-  /* Official HAW Hamburg corporate blue */
-  --color-haw-900: #003180;
-  /* Primary darken-3 */
-  --color-haw-950: #001e67;
-  /* Primary darken-4 / deep navy */
-
-  /* Semantic Primary mapping */
-  --color-primary-50: var(--color-haw-50);
-  --color-primary-100: var(--color-haw-100);
-  --color-primary-200: var(--color-haw-200);
-  --color-primary-300: var(--color-haw-300);
-  --color-primary-400: var(--color-haw-400);
-  --color-primary-500: var(--color-haw-500);
-  --color-primary-600: var(--color-haw-600);
-  --color-primary-700: var(--color-haw-700);
-  --color-primary-800: var(--color-haw-800);
-  --color-primary-900: var(--color-haw-900);
-  --color-primary-950: var(--color-haw-950);
-
-  /* OE Accent & Status Colors */
-  --color-oe-accent: #82b1ff;
-  --color-oe-secondary: #424242;
-  --color-oe-success: #4caf50;
-  --color-oe-warning: #fb8c00;
-  --color-oe-error: #ff5252;
-  --color-oe-info: #2196f3;
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #8ac5ff;
+  --color-primary-400: #488fef;
+  --color-primary-500: #1976d2;
+  --color-primary-600: #005eb6;
+  --color-primary-700: #00479b;
+  --color-primary-800: #003ca0;
+  --color-primary-900: #003180;
+  --color-primary-950: #001e67;
 }
 
 :root {

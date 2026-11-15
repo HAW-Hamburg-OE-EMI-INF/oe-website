@@ -13,24 +13,20 @@ const { faculty, studiengaenge: entries } = Astro.props as Props;
 ---
 
 <Layout faculty={faculty} name="Studiengänge">
-  <Hero compact title="Studiengänge" />
+  <Hero compact slot="hero" title="Studiengänge" />
 
-  <div class="mx-auto w-full max-w-4xl space-y-10 px-4 py-10 sm:px-6">
-    <section class="scroll-mt-20 space-y-4" id={faculty.short.toLowerCase()}>
-      <div class="border-b border-slate-200 pb-2">
-        <div class="flex items-center gap-2">
-          <span class="bg-primary-100 text-primary-800 rounded px-2 py-0.5 text-xs font-bold tracking-wider uppercase">
-            {faculty.short}
-          </span>
-          <h2 class="text-lg font-bold text-slate-900">Fakultät {faculty.name}</h2>
-        </div>
-      </div>
+  <div class="border-b border-slate-200 pb-2">
+    <div class="flex items-center gap-2">
+      <span class="bg-primary-100 text-primary-800 rounded px-2 py-0.5 text-xs font-bold tracking-wider uppercase">
+        {faculty.short}
+      </span>
+      <h2 class="text-lg font-bold text-slate-900">Fakultät {faculty.name}</h2>
+    </div>
+  </div>
 
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {entries.map((studiengang) => (
-          <StudiengangCard studiengang={studiengang} />
-        ))}
-      </div>
-    </section>
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    {entries.map((studiengang) => (
+      <StudiengangCard studiengang={studiengang} />
+    ))}
   </div>
 </Layout>

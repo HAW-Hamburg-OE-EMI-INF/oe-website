@@ -28,21 +28,20 @@ const roadmapData: RoadmapData[] = roadmapStudiengangPageIds.map((data) =>
   <Hero
     backgroundImage={CampusImage}
     imageAlt="HAW Hamburg Campus Berliner Tor"
+    slot="hero"
     subtitle="Herzlich Willkommen an der HAW Hamburg zum Studienstart an der Fakultät"
     title="Orientierungseinheit"
   >
     <FacultyTiles faculties={[faculty]} />
   </Hero>
 
-  <div class="mx-auto w-full max-w-4xl space-y-8 px-4 py-10 sm:px-6">
-    <Wartungsarbeiten faculty={faculty} />
+  <Wartungsarbeiten faculty={faculty} />
 
-    {faculty.id === "INF" && <OeInfoCard data={oeInfoCardDataINF} />}
-    {faculty.id === "EMI" && <OeInfoCard data={oeInfoCardDataEMI} />}
+  {faculty.id === "INF" && <OeInfoCard data={oeInfoCardDataINF} />}
+  {faculty.id === "EMI" && <OeInfoCard data={oeInfoCardDataEMI} />}
 
-    {roadmapData.map((data) => (
-      <RoadmapCard data={data} />
-    ))}
-    <SponsorCard />
-  </div>
+  {roadmapData.map((data) => (
+    <RoadmapCard data={data} />
+  ))}
+  <SponsorCard />
 </Layout>

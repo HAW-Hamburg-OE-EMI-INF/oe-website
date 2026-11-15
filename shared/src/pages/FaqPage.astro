@@ -17,13 +17,12 @@ const { faculty } = Astro.props as Props;
 <Layout faculty={faculty} name="Häufig gestellte Fragen (FAQ)">
   <Hero
     compact
+    slot="hero"
     subtitle="Antworten auf die wichtigsten Fragen zur Orientierungseinheit und deinem Studienstart an der HAW Hamburg"
     title="Häufige Fragen (FAQ)"
   />
 
-  <div class="mx-auto w-full max-w-4xl space-y-10 px-4 py-10 sm:px-6">
-    <FAQContainer>
-      <FAQContent />
-    </FAQContainer>
-  </div>
+  <FAQContainer>
+    <FAQContent />
+  </FAQContainer>
 </Layout>
