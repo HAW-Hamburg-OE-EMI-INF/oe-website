@@ -1,0 +1,38 @@
+---
+export type Variant = "desktop" | "mobile";
+type ActiveState = "active" | "inactive";
+
+const variantClasses: Record<Variant, string> = {
+  desktop: "text-sm",
+  mobile: "block text-base",
+};
+
+const activeStateClasses: Record<ActiveState, string> = {
+  active: "bg-primary-50 text-primary-700 font-semibold",
+  inactive: "hover:text-primary-700 text-slate-600 hover:bg-slate-50",
+};
+
+interface Props {
+  label: string;
+  href: string;
+  variant: Variant;
+}
+
+const { label, href, variant } = Astro.props as Props;
+
+const { pathname } = Astro.url;
+const currentPath = pathname.replace(/\/$/, "") || "/";
+
+const activeState: ActiveState = currentPath === href ? "active" : "inactive";
+---
+
+<a
+  class:list={[
+    "rounded-md px-3 py-2 font-medium",
+    variantClasses[variant],
+    activeStateClasses[activeState],
+  ]}
+  href={href}
+>
+  {label}
+</a>

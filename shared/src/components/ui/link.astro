@@ -1,0 +1,30 @@
+---
+export type LinkVariant = "inline" | "subtle" | "unstyled";
+
+export interface Props {
+  href: string;
+  external?: boolean;
+  variant?: LinkVariant;
+  class?: string;
+}
+
+const { href, external, variant = "unstyled", class: className = "" } = Astro.props as Props;
+
+const isExternal = external ?? /^https?:\/\//.test(href);
+
+const variantClasses: Record<LinkVariant, string> = {
+  inline:
+    "text-primary-600 hover:text-primary-800 font-medium underline underline-offset-2 transition-colors",
+  subtle: "hover:text-primary-700",
+  unstyled: "",
+};
+---
+
+<a
+  class:list={[variantClasses[variant], className]}
+  href={href}
+  rel={isExternal ? "noopener noreferrer" : undefined}
+  target={isExternal ? "_blank" : undefined}
+>
+  <slot />
+</a>

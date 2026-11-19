@@ -2,12 +2,15 @@
 import Card from "../components/card/card.astro";
 import Hero from "../components/hero/hero.astro";
 import RoadmapCard from "../components/roadmap/roadmap-card.astro";
+import Badge from "../components/ui/badge.astro";
+import Link from "../components/ui/link.astro";
 import { linksByPage } from "../data/links";
 import { roadmapBuilderDataByPageId } from "../data/roadmap";
 import { studiengaengeByPage } from "../data/studiengaenge";
 import { tutorNames } from "../data/tutor-names";
 import Layout from "../layouts/Layout.astro";
 import type { FacultyEntry, StudiengangPageId } from "../types/types";
+import { formatGermanList } from "../util/format.util";
 import { roadmapBuilder } from "../util/roadmap.util";
 
 export interface Props {
@@ -17,17 +20,8 @@ export interface Props {
 
 const { studiengangPageId, faculty } = Astro.props as Props;
 
-function formatTutors(list: string[]): string {
-  if (!list || list.length === 0) return "";
-
-  const sorted = [...list].sort();
-
-  if (sorted.length === 1) return sorted[0];
-  if (sorted.length === 2) return `${sorted[0]} und ${sorted[1]}`;
-  return `${sorted.slice(0, -1).join(", ")} und ${sorted[sorted.length - 1]}`;
-}
-
-const formattedTutors = formatTutors(tutorNames[studiengangPageId]);
+const tutors = tutorNames[studiengangPageId] ?? [];
+const formattedTutors = formatGermanList([...tutors].sort());
 
 const studiengaenge = studiengaengeByPage[studiengangPageId];
 
@@ -65,18 +59,11 @@ const roadmapData =
       {links.map((link) => (
         <li class="leading-relaxed">
           <div>
-            <a
-              class="text-primary-600 hover:text-primary-800 inline-block font-medium hover:underline"
-              href={link.href}
-              rel="noreferrer noopener"
-              target="_blank"
-            >
+            <Link class="inline-block" external href={link.href} variant="inline">
               {link.label}
-            </a>{" "}
+            </Link>{" "}
             {link.teamsCode && (
-              <span class="rounded border border-slate-200 bg-slate-100 px-1.5 py-0.5 font-mono text-xs font-semibold text-slate-800">
-                Teams&#x2011;Code:&nbsp;{link.teamsCode}
-              </span>
+              <Badge variant="mono">Teams&#x2011;Code:&nbsp;{link.teamsCode}</Badge>
             )}
           </div>
           {link.note && <span class="mt-0.5 text-sm text-slate-600">{link.note}</span>}

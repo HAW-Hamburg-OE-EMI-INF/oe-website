@@ -1,8 +1,7 @@
 ---
 import type { OeInfoCardData } from "../../types/types";
 import Card from "../card/card.astro";
-import Hyperlink from "./hyperlink.astro";
-import OeKontakt from "./oe-kontakt.astro";
+import Link from "../ui/link.astro";
 import OeStartveranstaltung from "./oe-startveranstaltung.astro";
 import OeStudiengaengeList from "./oe-studiengaenge-list.astro";
 
@@ -37,13 +36,23 @@ const { studiengaenge, startDate, endDate, startEvent, faculty } = data;
     </p>
 
     <p class="text-base leading-relaxed text-slate-600 sm:text-lg">
-      Falls du vorab schon Fragen hast schau auf unsere <Hyperlink href="/faq">FAQ-Seite</Hyperlink>{" "}
-      oder schreib uns eine Mail an: <OeKontakt email={faculty.contactEmail} />
+      Falls du vorab schon Fragen hast schau auf unsere{" "}
+      <Link href="/faq" variant="inline">
+        FAQ-Seite
+      </Link>{" "}
+      oder schreib uns eine Mail an:{" "}
+      <Link href={`mailto:${faculty.contactEmail}`} variant="inline">
+        {faculty.contactEmail}
+      </Link>
     </p>
 
     <p class="text-base leading-relaxed text-slate-600 sm:text-lg">
       Eine kleine Linksammlung und erste Informationen für die jeweiligen Studiengänge kannst du
-      außerdem unter <Hyperlink href="/studiengang">Studiengänge</Hyperlink> finden.
+      außerdem unter{" "}
+      <Link href="/studiengang" variant="inline">
+        Studiengänge
+      </Link>{" "}
+      finden.
     </p>
 
     <p class="text-primary-700 text-base font-semibold sm:text-lg">Wir freuen uns auf euch :)</p>

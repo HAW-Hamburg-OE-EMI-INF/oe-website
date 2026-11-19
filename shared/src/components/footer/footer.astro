@@ -1,6 +1,6 @@
 ---
 import type { FacultyEntry } from "../../types/types";
-import FooterLink from "./footer-link.astro";
+import Link from "../ui/link.astro";
 
 interface Props {
   faculty: FacultyEntry;
@@ -23,12 +23,15 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <nav class="flex flex-wrap items-center justify-center gap-6">
-        <FooterLink href="/impressum">Impressum</FooterLink>
-        <FooterLink href="/datenschutz">Datenschutzerklärung</FooterLink>
-        <FooterLink href="https://www.instagram.com/oe_emi_inf" isExternal={true}>
-          {" "}
-          Instagram{" "}
-        </FooterLink>
+        <Link href="/impressum" variant="subtle">
+          Impressum
+        </Link>
+        <Link href="/datenschutz" variant="subtle">
+          Datenschutzerklärung
+        </Link>
+        <Link external href="https://www.instagram.com/oe_emi_inf" variant="subtle">
+          Instagram
+        </Link>
       </nav>
     </div>
   </div>

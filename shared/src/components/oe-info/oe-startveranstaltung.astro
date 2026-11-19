@@ -1,5 +1,6 @@
 ---
 import type { OeStartEvent } from "../../types/types";
+import Link from "../ui/link.astro";
 
 export interface Props {
   startEvent: OeStartEvent;
@@ -13,12 +14,7 @@ Die OE startet am{" "}
   {startEvent.date} um {startEvent.time}
 </strong>{" "}
 in {startEvent.room ? `${startEvent.room} des ` : ""}
-<a
-  class="text-primary-600 hover:text-primary-800 font-medium underline underline-offset-2 transition-colors"
-  href={startEvent.mapsUrl}
-  rel="noreferrer noopener"
-  target="_blank"
->
+<Link external href={startEvent.mapsUrl} variant="inline">
   {startEvent.building}
-</a>{" "}
+</Link>{" "}
 ({startEvent.buildingShort}).

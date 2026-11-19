@@ -1,7 +1,9 @@
 ---
-import LegalContent from "../components/legal/legal-content.astro";
+import Card from "../components/card/card.astro";
 import Layout from "../layouts/Layout.astro";
 import type { FacultyEntry } from "../types/types";
+
+import "../styles/legal.css";
 
 interface Props {
   faculty: FacultyEntry;
@@ -11,7 +13,7 @@ const { faculty } = Astro.props as Props;
 ---
 
 <Layout faculty={faculty} name="Impressum">
-  <LegalContent>
+  <Card as="article" class="prose-content legal-content" padding="lg" variant="white">
     <h1>Impressum</h1>
 
     <p>
@@ -79,5 +81,5 @@ const { faculty } = Astro.props as Props;
       Erklärung gilt für alle auf den Webseiten angebrachten Links und für alle Inhalte der Seiten,
       zu denen Links oder Banner führen.
     </p>
-  </LegalContent>
+  </Card>
 </Layout>

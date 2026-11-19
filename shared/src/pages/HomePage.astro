@@ -6,7 +6,7 @@ import OeInfoCard from "../components/oe-info/oe-info-card.astro";
 import RoadmapCard from "../components/roadmap/roadmap-card.astro";
 import SponsorCard from "../components/sponsor/sponsor-card.astro";
 import Wartungsarbeiten from "../components/wartungsarbeiten/wartungsarbeiten.astro";
-import { oeInfoCardDataEMI, oeInfoCardDataINF } from "../data/general-info";
+import { oeInfoCardDataByFaculty } from "../data/general-info";
 import { roadmapBuilderDataByPageId } from "../data/roadmap";
 import Layout from "../layouts/Layout.astro";
 import type { FacultyEntry, RoadmapData, StudiengangPageId } from "../types/types";
@@ -37,8 +37,7 @@ const roadmapData: RoadmapData[] = roadmapStudiengangPageIds.map((data) =>
 
   <Wartungsarbeiten faculty={faculty} />
 
-  {faculty.id === "INF" && <OeInfoCard data={oeInfoCardDataINF} />}
-  {faculty.id === "EMI" && <OeInfoCard data={oeInfoCardDataEMI} />}
+  <OeInfoCard data={oeInfoCardDataByFaculty[faculty.id]} />
 
   {roadmapData.map((data) => (
     <RoadmapCard data={data} />

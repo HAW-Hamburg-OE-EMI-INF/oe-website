@@ -135,6 +135,11 @@ export const studiengaengeINF: StudiengangEntry[] = [
   studiengaenge["M-INF"],
 ];
 
+export const studiengaengeByFaculty: Record<FacultyId, StudiengangEntry[]> = {
+  EMI: studiengaengeEMI,
+  INF: studiengaengeINF,
+};
+
 export const studiengaengeByPage: Record<
   StudiengangPageId,
   [StudiengangEntry] | [StudiengangEntry, StudiengangEntry]

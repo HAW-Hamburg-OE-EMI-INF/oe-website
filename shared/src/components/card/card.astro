@@ -1,27 +1,48 @@
 ---
 import type { SvgComponent } from "astro/types";
 
+export type CardElement = "div" | "nav" | "article" | "section";
+export type CardVariant = "white" | "primary";
+export type CardPadding = "sm" | "md" | "lg";
+
 export interface Props {
-  variant?: "white" | "primary";
+  as?: CardElement;
+  variant?: CardVariant;
+  padding?: CardPadding;
   heading?: string;
   headingTrailingIcon?: SvgComponent;
+  ariaLabel?: string;
   class?: string;
 }
 
 const {
+  as = "div",
   variant = "white",
+  padding = "md",
   heading,
   headingTrailingIcon: HeadingTrailingIcon,
+  ariaLabel,
   class: className = "",
 } = Astro.props as Props;
 
-const variantClasses: Record<string, string> = {
+const Tag = as;
+
+const variantClasses: Record<CardVariant, string> = {
   white: "bg-white border border-slate-200 shadow-xs text-slate-900",
   primary: "bg-primary-700 text-white shadow-md",
 };
+
+const paddingClasses: Record<CardPadding, string> = {
+  sm: "p-4 sm:p-5",
+  md: "p-6 sm:p-8",
+  lg: "p-6 sm:p-10",
+};
 ---
 
-<div class:list={["rounded-2xl p-6 sm:p-8", variantClasses[variant], className]}>
+<Tag
+  aria-label={ariaLabel}
+  class:list={["rounded-2xl", paddingClasses[padding], variantClasses[variant], className]}
+>
   {(heading || HeadingTrailingIcon) && (
     <div class="mb-4 flex items-center gap-3">
       {HeadingTrailingIcon && (
@@ -33,4 +54,4 @@ const variantClasses: Record<string, string> = {
     </div>
   )}
   <slot />
-</div>
+</Tag>

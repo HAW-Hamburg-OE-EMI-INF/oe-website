@@ -1,0 +1,41 @@
+.prose-content {
+  line-height: 1.65;
+}
+
+.prose-content p:last-child {
+  margin-bottom: 0;
+}
+
+.prose-content a {
+  color: var(--color-primary-600, #005eb6);
+  transition:
+    color 0.15s ease,
+    text-decoration-color 0.15s ease;
+}
+
+.prose-content a:hover {
+  color: var(--color-primary-800, #003ca0);
+}
+
+.prose-content strong,
+.prose-content b {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.prose-content ul,
+.prose-content ol {
+  padding-left: 1.25rem;
+}
+
+.prose-content ul {
+  list-style-type: disc;
+}
+
+.prose-content ol {
+  list-style-type: decimal;
+}
+
+.prose-content li {
+  margin-bottom: 0.25rem;
+}

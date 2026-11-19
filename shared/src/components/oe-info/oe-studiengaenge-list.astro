@@ -1,5 +1,6 @@
 ---
 import type { StudiengangEntry } from "../../types/types";
+import { getGermanListSeparator } from "../../util/format.util";
 
 export interface Props {
   studiengaenge: StudiengangEntry[];
@@ -8,15 +9,11 @@ export interface Props {
 const { studiengaenge } = Astro.props as Props;
 ---
 
-{studiengaenge.map((item, index) => {
-  const formatted = `${item.name} (${item.short})`;
-  const isLast = index === studiengaenge.length - 1;
-  const isSecondToLast = index === studiengaenge.length - 2;
-
-  return (
-    <>
-      <strong class="text-primary-800 font-bold">{formatted}</strong>
-      {isSecondToLast ? " und " : !isLast ? ", " : ""}
-    </>
-  );
-})}
+{studiengaenge.map((item, index) => (
+  <>
+    <strong class="text-primary-800 font-bold">
+      {item.name} ({item.short})
+    </strong>
+    {getGermanListSeparator(index, studiengaenge.length)}
+  </>
+))}

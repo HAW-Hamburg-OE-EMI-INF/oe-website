@@ -1,3 +1,5 @@
+@import "./prose.css";
+
 .legal-content h1 {
   font-size: 1.875rem;
   line-height: 2.25rem;
@@ -28,19 +30,12 @@
 
 .legal-content p {
   font-size: 0.95rem;
-  line-height: 1.65;
   color: #334155;
   margin-bottom: 1rem;
 }
 
-.legal-content p:last-child {
-  margin-bottom: 0;
-}
-
 .legal-content a {
-  color: var(--color-primary-600, #005eb6);
   text-decoration: none;
-  transition: color 0.15s ease;
 }
 
 .legal-content a:hover {
@@ -48,28 +43,9 @@
   text-decoration: underline;
 }
 
-.legal-content strong {
-  font-weight: 600;
-  color: #0f172a;
-}
-
 .legal-content ul,
 .legal-content ol {
-  margin-left: 1.25rem;
   margin-bottom: 1rem;
   color: #334155;
   font-size: 0.95rem;
-  line-height: 1.65;
-}
-
-.legal-content ul {
-  list-style-type: disc;
-}
-
-.legal-content ol {
-  list-style-type: decimal;
-}
-
-.legal-content li {
-  margin-bottom: 0.25rem;
 }

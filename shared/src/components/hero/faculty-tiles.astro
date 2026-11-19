@@ -1,6 +1,7 @@
 ---
 import { faculties as defaultFaculties } from "../../data/faculty";
 import type { FacultyEntry } from "../../types/types";
+import Badge from "../ui/badge.astro";
 
 interface Props {
   faculties?: FacultyEntry[];
@@ -21,9 +22,7 @@ const isSingle = faculties.length === 1;
 >
   {faculties.map((fac) => (
     <div class="bg-primary-800/80 border-primary-400/25 flex min-h-15 items-center gap-3 rounded-xl border p-3 shadow-xs backdrop-blur-xs sm:min-h-17 sm:p-3.5">
-      <span class="bg-primary-500/50 border-primary-300/30 inline-flex shrink-0 items-center justify-center rounded-md border px-2.5 py-1 text-xs font-bold tracking-wider text-white">
-        {fac.short}
-      </span>
+      <Badge variant="glass">{fac.short}</Badge>
       <span class="text-primary-50 text-xs leading-snug font-medium sm:text-sm">{fac.name}</span>
     </div>
   ))}

@@ -1,0 +1,19 @@
+---
+import Badge from "./badge.astro";
+
+export interface Props {
+  badge: string;
+  title: string;
+  description?: string;
+}
+
+const { badge, title, description } = Astro.props as Props;
+---
+
+<div class="border-b border-slate-200 pb-2">
+  <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+    <Badge variant="soft">{badge}</Badge>
+    <h2 class="w-full text-lg font-bold text-slate-900 sm:w-auto">{title}</h2>
+  </div>
+  {description && <p class="mt-1 text-sm text-slate-600">{description}</p>}
+</div>

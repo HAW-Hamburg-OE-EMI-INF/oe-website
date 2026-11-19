@@ -1,7 +1,9 @@
 ---
-import LegalContent from "../components/legal/legal-content.astro";
+import Card from "../components/card/card.astro";
 import Layout from "../layouts/Layout.astro";
 import type { FacultyEntry } from "../types/types";
+
+import "../styles/legal.css";
 
 interface Props {
   faculty: FacultyEntry;
@@ -11,7 +13,7 @@ const { faculty } = Astro.props as Props;
 ---
 
 <Layout faculty={faculty} name="Datenschutzerklärung">
-  <LegalContent>
+  <Card as="article" class="prose-content legal-content" padding="lg" variant="white">
     <h1>Datenschutzerklärung</h1>
 
     <h2>Allgemeiner Hinweis und Pflichtinformationen</h2>
@@ -159,5 +161,5 @@ const { faculty } = Astro.props as Props;
         https://privacycenter.instagram.com/policy/
       </a>
     </p>
-  </LegalContent>
+  </Card>
 </Layout>

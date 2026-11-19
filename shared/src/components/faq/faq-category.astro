@@ -1,4 +1,6 @@
 ---
+import SectionHeader from "../ui/section-header.astro";
+
 interface Props {
   title: string;
   description?: string;
@@ -18,15 +20,11 @@ const questionCount = Math.max(0, content.split("data-faq-item").length - 1);
   data-category-title={title}
   id={categoryId}
 >
-  <div class="border-b border-slate-200 pb-2">
-    <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1">
-      <span class="bg-primary-100 text-primary-800 shrink-0 rounded px-2 py-0.5 text-xs font-bold tracking-wider uppercase">
-        {questionCount}&nbsp;{questionCount === 1 ? "Frage" : "Fragen"}
-      </span>
-      <h2 class="w-full text-lg font-bold text-slate-900 sm:w-auto">{title}</h2>
-    </div>
-    {description && <p class="mt-1 text-sm text-slate-600">{description}</p>}
-  </div>
+  <SectionHeader
+    badge={`${questionCount}\u00A0${questionCount === 1 ? "Frage" : "Fragen"}`}
+    description={description}
+    title={title}
+  />
 
   <div class="space-y-3">
     <slot />

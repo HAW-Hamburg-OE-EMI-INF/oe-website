@@ -3,8 +3,7 @@ import MenuIcon from "../../assets/icons/menu.svg";
 import CloseIcon from "../../assets/icons/x.svg";
 import type { FacultyEntry } from "../../types/types";
 import HeaderLogo from "./header-logo.astro";
-import NavItemDesktop from "./nav-item-desktop.astro";
-import NavItemMobile from "./nav-item-mobile.astro";
+import NavItem from "./nav-item.astro";
 
 interface Props {
   faculty: FacultyEntry;
@@ -27,7 +26,7 @@ const navItems = [
       <!-- Desktop Navigation -->
       <nav class="hidden items-center gap-1 pl-8 md:flex">
         {navItems.map((item) => (
-          <NavItemDesktop href={item.href} label={item.label} />
+          <NavItem href={item.href} label={item.label} variant="desktop" />
         ))}
       </nav>
 
@@ -61,7 +60,7 @@ const navItems = [
     <div class="overflow-hidden border-t border-slate-200 bg-white">
       <div class="-translate-y-1 space-y-1 px-4 pt-2 pb-4 opacity-0 transition-all duration-300 ease-out group-data-[open=true]/menu:translate-y-0 group-data-[open=true]/menu:opacity-100">
         {navItems.map((item) => (
-          <NavItemMobile href={item.href} label={item.label} />
+          <NavItem href={item.href} label={item.label} variant="mobile" />
         ))}
       </div>
     </div>

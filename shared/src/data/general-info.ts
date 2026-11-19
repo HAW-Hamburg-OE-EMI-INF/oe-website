@@ -1,4 +1,4 @@
-import type { OeInfoCardData, OeStartEvent } from "../types/types";
+import type { FacultyId, OeInfoCardData, OeStartEvent } from "../types/types";
 import { faculties } from "./faculty";
 import { studiengaenge } from "./studiengaenge";
 
@@ -40,4 +40,9 @@ export const oeInfoCardDataINF: OeInfoCardData = {
     time: "10:30 Uhr",
   },
   faculty: faculties.INF,
+};
+
+export const oeInfoCardDataByFaculty: Record<FacultyId, OeInfoCardData> = {
+  EMI: oeInfoCardDataEMI,
+  INF: oeInfoCardDataINF,
 };

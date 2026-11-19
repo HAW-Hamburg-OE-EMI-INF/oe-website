@@ -1,6 +1,6 @@
 ---
 import InfoIcon from "../../assets/icons/info.svg";
-import { studiengaengeEMI, studiengaengeINF } from "../../data/studiengaenge";
+import { studiengaengeByFaculty } from "../../data/studiengaenge";
 import type { FacultyEntry } from "../../types/types";
 import Card from "../card/card.astro";
 import StudiengaengeBox from "./studiengaenge-box.astro";
@@ -19,18 +19,9 @@ const { faculty } = Astro.props as Props;
   </p>
 
   <div class="space-y-4">
-    {faculty.id === "EMI" && (
-      <StudiengaengeBox
-        studiengaenge={studiengaengeEMI}
-        title="¹ Studiengänge der Fakultät Elektro-, Medien- und Informationstechnik:"
-      />
-    )}
-
-    {faculty.id === "INF" && (
-      <StudiengaengeBox
-        studiengaenge={studiengaengeINF}
-        title="¹ Studiengänge der Fakultät Informatik und Digitale Gesellschaft:"
-      />
-    )}
+    <StudiengaengeBox
+      studiengaenge={studiengaengeByFaculty[faculty.id]}
+      title={`¹ Studiengänge der Fakultät ${faculty.name}:`}
+    />
   </div>
 </Card>
