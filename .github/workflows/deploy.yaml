@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install dependencies
         run: npm clean-install
@@ -44,14 +44,14 @@ jobs:
         run: npm run build
 
       - name: Upload EMI build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: emi-dist
           path: ./emi/dist
           retention-days: 1
 
       - name: Upload INF build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: inf-dist
           path: ./inf/dist
@@ -78,10 +78,10 @@ jobs:
             cname: inf.oe.dashline.de
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Download ${{ matrix.site }} build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: ${{ matrix.artifact }}
           path: ./dist
