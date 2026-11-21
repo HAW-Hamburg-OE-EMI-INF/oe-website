@@ -1,4 +1,3 @@
-import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { faculties } from "@oe/shared/data/faculty.js";
 import { sharedWorkspaceViteConfig } from "@oe/shared/vite-shared";
@@ -9,7 +8,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: faculties.INF.website,
   output: "static",
-  integrations: [mdx(), sitemap()],
+  integrations: [sitemap()],
   vite: {
     ...sharedWorkspaceViteConfig,
     plugins: [tailwindcss(), ...sharedWorkspaceViteConfig.plugins],
