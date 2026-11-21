@@ -5,6 +5,11 @@ import type {
   StudiengangPageId,
 } from "../types/types";
 
+//
+// EDIT AREA START
+//
+
+/** common data for all study programs */
 const common: CommonRoadmapData = {
   semester: "SoSe 26",
   days: [
@@ -31,6 +36,7 @@ const common: CommonRoadmapData = {
   ],
 };
 
+/** example roadmap data for one specific study program */
 const demoDayData: SpecificRoadmapDayData[] = [
   {
     start: "10:00 Uhr",
@@ -69,6 +75,7 @@ const demoDayData: SpecificRoadmapDayData[] = [
   },
 ];
 
+/** roadmap data per study program */
 export const roadmapBuilderDataByPageId: Record<
   Exclude<StudiengangPageId, "m-inf">,
   RoadmapBuilderData
@@ -128,3 +135,7 @@ export const roadmapBuilderDataByPageId: Record<
     days: demoDayData,
   },
 };
+
+//
+// EDIT AREA END
+//

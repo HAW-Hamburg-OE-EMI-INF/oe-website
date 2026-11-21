@@ -1,5 +1,9 @@
 import type { FacultyEntry, FacultyId } from "../types/types";
 
+//
+// EDIT AREA START
+//
+
 export const faculties = {
   EMI: {
     id: "EMI",
@@ -16,3 +20,7 @@ export const faculties = {
     website: "https://oe.informatik.haw-hamburg.de/",
   },
 } satisfies Record<FacultyId, FacultyEntry>;
+
+//
+// EDIT AREA END
+//

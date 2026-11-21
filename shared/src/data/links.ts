@@ -1,5 +1,11 @@
 import type { LinkCollectionEntry, StudiengangPageId } from "../types/types";
 
+//
+// EDIT AREA START
+//
+
+// definition of commonly used links
+
 const hvvSemesterTicketLink: LinkCollectionEntry = {
   label: "HVV Semesterticket",
   href: "https://www.haw-hamburg.de/ticket/",
@@ -36,6 +42,8 @@ const teamsRaumSupportLink: LinkCollectionEntry = {
   teamsCode: "qwlqb91",
 };
 
+// combine commonly used links
+
 const emiCommon = [onlineServicesLink, hvvSemesterTicketLink, myHawLink, klausurenSammlungLinkEMI];
 
 const infCommon = [
@@ -50,6 +58,7 @@ const infCommon = [
   klausurenSammlungLinkINF,
 ];
 
+/** links per study program page */
 export const linksByPage: Record<StudiengangPageId, LinkCollectionEntry[]> = {
   et: [
     {
@@ -130,3 +139,7 @@ export const linksByPage: Record<StudiengangPageId, LinkCollectionEntry[]> = {
     ...infCommon,
   ],
 };
+
+//
+// EDIT AREA END
+//

@@ -27,7 +27,7 @@ Das Projekt ist als Monorepo mit drei npm-Workspaces aufgebaut:
 
 - `assets/`: Bilder, SVG-Icons und Logos.
 - `components/`: Wiederverwendbare UI- und Bereichskomponenten (z. B. Header, Footer, Hero, Roadmap, FAQ, Studiengang-Karten, Wartungsseite).
-- `data/`: Zentrale Inhalts- und Konfigurationsdaten der Websites (siehe nächster Abschnitt).
+- `data/`: Zentrale Inhalts- und Konfigurationsdaten der Websites (siehe [Anleitung in `shared/src/data/README.md`](./shared/src/data/README.md)).
 - `layouts/`: Gemeinsames Grundlayout (`Layout.astro`).
 - `pages/`: Vollständige Seitenvorlagen (Startseite, FAQ, Studiengänge, Detailseiten, Impressum, Datenschutz), die von `emi/` und `inf/` eingebunden werden.
 - `styles/`: Gemeinsame Stylesheets und Tailwind-Basisdefinitionen.
@@ -36,26 +36,9 @@ Das Projekt ist als Monorepo mit drei npm-Workspaces aufgebaut:
 
 ## Webseitendaten anpassen
 
-Fast alle Inhalte, die sich von Semester zu Semester ändern (Termine, Zeitpläne, Namen der Tutor*innen, Links oder FAQs), liegen zentral im Ordner **`shared/src/data/`**. Wer nur Inhalte aktualisieren möchte, muss in der Regel keine Komponenten oder Layouts anfassen.
+Fast alle Inhalte, die sich von Semester zu Semester ändern (Termine, Zeitpläne, Namen der Tutor\*innen, Links oder FAQs), liegen zentral im Ordner **`shared/src/data/`**. Wer nur Inhalte aktualisieren möchte, muss in der Regel keine Komponenten oder Layouts anfassen.
 
-### Übersicht der Dateien in `shared/src/data/`
-
-| Datei               | Zuständigkeit / Was dort angepasst wird                                                                                                                                                                           |
-| :------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `general-info.ts`   | Zeitraum der OE-Woche (`startDate`, `endDate`), Infos zur gemeinsamen Startveranstaltung (Datum, Gebäude, Raum, Google-Maps-Link) sowie Startzeiten und zugeordnete Studiengänge je Fakultät (EMI / INF).         |
-| `roadmap.ts`        | Der komplette OE-Wochenplan: Semesterbezeichnung, Wochentage, Daten und das gemeinsame Abendprogramm (`common`) sowie die studiengangspezifischen Tagespläne, Uhrzeiten und Räume (`roadmapBuilderDataByPageId`). |
-| `tutor-names.ts`    | Vornamen der OE-Tutor*innen, geordnet nach Studiengang-Seiten-ID (z. B. `et`, `ai`, `its-ecs`, `wi`).                                                                                                             |
-| `links.ts`          | Link-Sammlungen für Erstsemester (z. B. HVV-Semesterticket, myHAW, Online-Services, Klausurensammlung, Teams-Support-Raum sowie studiengangspezifische HAW-Seiten).                                               |
-| `faq-content.astro` | Alle Fragen und Antworten auf der FAQ-Seite, gegliedert in `<FAQCategory>`- und `<FAQQuestion>`-Blöcke.                                                                                                           |
-| `studiengaenge.ts`  | Stammdaten der Studiengänge (vollständiger Name, Kürzel, Abschluss wie B.Sc./M.Sc., zugehörige Fakultät und URL-Pfad). Muss meist nur angepasst werden, wenn Studiengänge hinzukommen oder umbenannt werden.      |
-| `faculty.ts`        | Stammdaten der Fakultäten EMI und INF (Name, Kürzel, Kontakt-E-Mail, Website-URL). Ändert sich in der Regel nur selten.                                                                                           |
-
-### Kurzanleitung für Änderungen an den Daten
-
-1. Abhängigkeiten einmalig im Hauptverzeichnis installieren: `npm install`
-2. Die gewünschte Datei in `shared/src/data/` öffnen und die Einträge anpassen.
-3. Den Entwicklungsserver starten (`npm run dev:emi` oder `npm run dev:inf`) und die Änderungen im Browser kontrollieren.
-4. Vor dem Commit einmal `npm run fmt` ausführen, damit die Formatierung stimmt, und mit `npm run check` prüfen, ob Formatierung, Linting, Typen und Build für alle Workspaces fehlerfrei durchlaufen.
+Eine ausführliche Anleitung dazu, was genau in welcher Datei angepasst werden kann (inkl. Ablauf, `EDIT AREA` und Unterschied zwischen `StudiengangId` und `StudiengangPageId`), findest du in der [Data-README (`shared/src/data/README.md`)](./shared/src/data/README.md).
 
 ## Befehle
 

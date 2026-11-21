@@ -1,6 +1,11 @@
 import type { FacultyId, StudiengangEntry, StudiengangId, StudiengangPageId } from "../types/types";
 import { faculties } from "./faculty";
 
+//
+// EDIT AREA START
+//
+
+//** general information about eaach study program */
 export const studiengaenge = {
   ET: {
     name: "Elektrotechnik und Informationstechnik",
@@ -114,6 +119,7 @@ export const studiengaenge = {
   },
 } satisfies Record<StudiengangId, StudiengangEntry>;
 
+/** list of all study programs for the faculty of EMI */
 export const studiengaengeEMI: StudiengangEntry[] = [
   studiengaenge.ET,
   studiengaenge.IE,
@@ -121,6 +127,7 @@ export const studiengaengeEMI: StudiengangEntry[] = [
   studiengaenge.REE,
 ];
 
+/** list of all bachelor study programs for the faculty of INF */
 export const studiengaengeBachelorINF: StudiengangEntry[] = [
   studiengaenge.AI,
   studiengaenge.ITS,
@@ -130,16 +137,23 @@ export const studiengaengeBachelorINF: StudiengangEntry[] = [
   studiengaenge.BIM,
 ];
 
+/** list of all study programs for the faculty of INF (bachelor + master) */
 export const studiengaengeINF: StudiengangEntry[] = [
   ...studiengaengeBachelorINF,
   studiengaenge["M-INF"],
 ];
 
+//
+// EDIT AREA END
+//
+
+/** map study programs to their faculties */
 export const studiengaengeByFaculty: Record<FacultyId, StudiengangEntry[]> = {
   EMI: studiengaengeEMI,
   INF: studiengaengeINF,
 };
 
+/** map study program page ids to their corresponding study programs (1 or 2 study programs per page) */
 export const studiengaengeByPage: Record<
   StudiengangPageId,
   [StudiengangEntry] | [StudiengangEntry, StudiengangEntry]

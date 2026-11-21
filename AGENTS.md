@@ -20,7 +20,7 @@ Monorepo (npm workspaces, Node `>=22.23.4`, ESM) for the HAW Hamburg orientation
 
 - `assets/`: Images, SVG icons, and logos imported by components.
 - `components/`: Reusable Astro UI and feature components grouped by domain (`header`, `footer`, `hero`, `roadmap`, `faq`, `oe-info`, `studiengang`, `sponsor`, `card`, `wartungsarbeiten`, `ui`).
-- `data/`: Static domain data and content (faculties, study programs, roadmap, FAQ content, links, general info, tutor names).
+- `data/`: Static domain data and content (faculties, study programs, roadmap, FAQ content, links, general info, tutor names). See [`shared/src/data/README.md`](./shared/src/data/README.md) for the content editing guide (`EDIT AREA` markers, `StudiengangId` vs. `StudiengangPageId`, and per-file documentation) — keep it in sync when changing data structures or files.
 - `layouts/`: Base page layout (`Layout.astro`).
 - `pages/`: Shared full-page Astro templates (`HomePage`, `FaqPage`, `StudiengaengePage`, `StudiengangDetailPage`, `ImpressumPage`, `DatenschutzPage`) invoked by the thin route files in `emi/` and `inf/`.
 - `styles/`: Shared Tailwind CSS v4 base stylesheet (`global.css`) and section-specific stylesheets (`faq.css`, `legal.css`, `prose.css`).

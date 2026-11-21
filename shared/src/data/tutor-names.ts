@@ -1,5 +1,13 @@
 import type { StudiengangPageId } from "../types/types";
 
+//
+// EDIT AREA START
+//
+
+/**
+ * list of tutor names, one entry per study program page
+ * order is sorted alphabetically
+ */
 export const tutorNames: Record<StudiengangPageId, string[]> = {
   et: ["David", "Azadeh", "Paddi", "Jonte", "Luis", "Johanna"],
   ie: ["Amjad", "Hoang", "Kerem", "Kushagr", "Abrar", "Urbee", "Nushra", "Raya"],
@@ -12,3 +20,7 @@ export const tutorNames: Record<StudiengangPageId, string[]> = {
   bim: ["Maisam", "Deborah", "Ina", "Laura"],
   "m-inf": [],
 };
+
+//
+// EDIT AREA END
+//
