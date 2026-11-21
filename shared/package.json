@@ -12,6 +12,7 @@
     "./styles/*": "./src/styles/*",
     "./types": "./src/types/types.ts",
     "./types/*": "./src/types/*",
+    "./util/*": "./src/util/*",
     "./vite-shared": "./src/vite-shared.ts"
   },
   "scripts": {

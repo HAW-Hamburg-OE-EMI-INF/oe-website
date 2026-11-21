@@ -11,6 +11,7 @@ import { tutorNames } from "../data/tutor-names";
 import Layout from "../layouts/Layout.astro";
 import type { FacultyEntry, StudiengangPageId } from "../types/types";
 import { formatGermanList } from "../util/format.util";
+import { isMaintenanceMode } from "../util/maintenance.util";
 import { roadmapBuilder } from "../util/roadmap.util";
 
 export interface Props {
@@ -20,7 +21,9 @@ export interface Props {
 
 const { studiengangPageId, faculty } = Astro.props as Props;
 
-const tutors = tutorNames[studiengangPageId] ?? [];
+const isMaintenance = isMaintenanceMode();
+
+const tutors = isMaintenance ? [] : (tutorNames[studiengangPageId] ?? []);
 const formattedTutors = formatGermanList([...tutors].sort());
 
 const studiengaenge = studiengaengeByPage[studiengangPageId];
@@ -52,7 +55,7 @@ const roadmapData =
     </p>
   </Card>
 
-  {roadmapData && <RoadmapCard data={roadmapData} />}
+  {!isMaintenance && roadmapData && <RoadmapCard data={roadmapData} />}
 
   <Card heading="Linksammlung" variant="white">
     <ul class="list-disc space-y-3 pl-5">

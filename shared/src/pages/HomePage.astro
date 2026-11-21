@@ -10,6 +10,7 @@ import { oeInfoCardDataByFaculty } from "../data/general-info";
 import { roadmapBuilderDataByPageId } from "../data/roadmap";
 import Layout from "../layouts/Layout.astro";
 import type { FacultyEntry, RoadmapData, StudiengangPageId } from "../types/types";
+import { isMaintenanceMode } from "../util/maintenance.util";
 import { roadmapBuilder } from "../util/roadmap.util";
 
 interface Props {
@@ -18,6 +19,8 @@ interface Props {
 }
 
 const { faculty, roadmapStudiengangPageIds } = Astro.props as Props;
+
+const isMaintenance = isMaintenanceMode();
 
 const roadmapData: RoadmapData[] = roadmapStudiengangPageIds.map((data) =>
   roadmapBuilder(roadmapBuilderDataByPageId[data]),
@@ -35,12 +38,16 @@ const roadmapData: RoadmapData[] = roadmapStudiengangPageIds.map((data) =>
     <FacultyTiles faculties={[faculty]} />
   </Hero>
 
-  <Wartungsarbeiten faculty={faculty} />
+  {isMaintenance ? (
+    <Wartungsarbeiten faculty={faculty} />
+  ) : (
+    <>
+      <OeInfoCard data={oeInfoCardDataByFaculty[faculty.id]} />
 
-  <OeInfoCard data={oeInfoCardDataByFaculty[faculty.id]} />
-
-  {roadmapData.map((data) => (
-    <RoadmapCard data={data} />
-  ))}
+      {roadmapData.map((data) => (
+        <RoadmapCard data={data} />
+      ))}
+    </>
+  )}
   <SponsorCard />
 </Layout>

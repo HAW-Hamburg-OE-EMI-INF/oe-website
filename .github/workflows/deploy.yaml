@@ -5,6 +5,12 @@ on:
     branches: ["main"]
 
   workflow_dispatch:
+    inputs:
+      maintenance_mode:
+        description: "Enable maintenance mode for this build"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -33,6 +39,8 @@ jobs:
         run: npm run lint
 
       - name: Build both sites
+        env:
+          PUBLIC_MAINTENANCE_MODE: ${{ inputs.maintenance_mode || vars.MAINTENANCE_MODE || 'false' }}
         run: npm run build
 
       - name: Upload EMI build artifact
