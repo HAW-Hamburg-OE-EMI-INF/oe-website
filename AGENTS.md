@@ -41,10 +41,10 @@ Run commands from the repository root:
 
 - `npm run dev:emi` / `npm run dev:inf` — Start dev server for a site
 - `npm run build` (`build:emi`, `build:inf`) — Build both sites (or one site) to `<site>/dist/`
-- `npm run preview:emi` / `npm run preview:inf` — Preview a built site locally
 - `npm run typecheck` — Run `typecheck` across all workspaces
 - `npm run lint` / `npm run lint:fix` — Run ESLint across the repo
 - `npm run fmt` / `npm run fmt:check` — Format or check formatting with `oxfmt`
+- `npm run check` — Run all checks including builds (`fmt:check`, `lint`, `typecheck`, `build`) across all workspaces
 
 ### Maintenance Mode
 
@@ -55,7 +55,7 @@ Controlled at build time via `PUBLIC_MAINTENANCE_MODE=true` (or `1`), read by `s
 Before finishing changes, ensure formatting, linting, types, and builds pass (matching Lefthook and CI):
 
 ```bash
-npm run fmt:check && npm run lint && npm run typecheck && npm run build
+npm run check
 ```
 
 ## Development

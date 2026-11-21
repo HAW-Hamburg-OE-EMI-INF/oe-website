@@ -14,13 +14,12 @@
     "build": "npm run build --workspaces --if-present",
     "build:emi": "npm run build --workspace=@oe/emi",
     "build:inf": "npm run build --workspace=@oe/inf",
-    "preview:emi": "npm run preview --workspace=@oe/emi",
-    "preview:inf": "npm run preview --workspace=@oe/inf",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "check": "npm run fmt:check && npm run lint && npm run typecheck && npm run build"
   },
   "devDependencies": {
     "@astrojs/compiler-rs": "^0.5.2",
